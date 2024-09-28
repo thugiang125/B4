@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra số nguyên tố</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label, input, button {
+            margin: 10px 0;
+            display: block;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kiểm tra số nguyên tố</h1>
+    <label for="number">Nhập số n:</label>
+    <input type="number" id="number" placeholder="Nhập số n" required>
+    <button onclick="checkPrime()">Kiểm tra</button>
+
+    <div id="result"></div>
+
+    <script>
+        function isPrime(n) {
+            if (n <= 1) return false;
+            if (n === 2) return true; // 2 là số nguyên tố
+            if (n % 2 === 0) return false; // Loại bỏ các số chẵn > 2
+            
+            for (var i = 3; i <= Math.sqrt(n); i += 2) {
+                if (n % i === 0) return false;
+            }
+            return true;
+        }
+
+        function checkPrime() {
+            var n = document.getElementById('number').value;
+            n = parseInt(n);
+            
+            if (isNaN(n) || n <= 0) {
+                document.getElementById('result').innerHTML = "Vui lòng nhập một số nguyên dương.";
+                return;
+            }
+
+            if (isPrime(n)) {
+                document.getElementById('result').innerHTML = n + " là số nguyên tố.";
+            } else {
+                document.getElementById('result').innerHTML = n + " không phải là số nguyên tố.";
+            }
+        }
+    </script>
+</body>
+</html>
